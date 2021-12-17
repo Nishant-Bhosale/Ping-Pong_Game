@@ -12,10 +12,19 @@ function update(time){
       const delta = time - lastTime;
       //Update Code
       // ball.update(delta);
-      computerPaddle.update(delta);
+      computerPaddle.update(delta, ball.y);
+
+      if(isLose()){
+         handleLose();
+      }
    }
    lastTime = time;
    window.requestAnimationFrame(update);
+}
+
+const isLose = ()=> {
+   const rect = ball.rect();
+   return rect.left <= 0 || rect.right >= window.innerWidth;
 }
 
 document.addEventListener("mousemove", e => {
