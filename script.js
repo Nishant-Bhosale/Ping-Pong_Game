@@ -7,8 +7,8 @@ let lastTime;
 function update(time){
    if(lastTime != null){
       const delta = time - lastTime;
-
       //Update Code
+      ball.update(delta);
    }
    lastTime = time;
    window.requestAnimationFrame(update);
