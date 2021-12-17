@@ -1,5 +1,5 @@
-const INITIAL_VELOCITY = 0.05;
-
+const INITIAL_VELOCITY = 0.02;
+const VELOCITY_INCREASE = 0.00001;
 export default class Ball{
    constructor(ballElement){
       this.ballElem = ballElement;
@@ -46,11 +46,15 @@ export default class Ball{
    update(delta){
       this.x += this.direction.x * this.velocity * delta;
       this.y += this.direction.y * this.velocity * delta;
-
+      this.velocity += VELOCITY_INCREASE * delta;
       const rect = this.rect();
 
       if(rect.bottom >= window.innerHeight || rect.top <= 0){
          this.direction.y *= -1;
+      }
+
+      if(rect.left <= 0 || rect.right >= window.innerWidth){
+         this.direction.x *= -1;
       }
    }
 }
