@@ -58,8 +58,12 @@ body{
 .score > * {
    flex-grow: 1;
    flex-basis: 0;
+   padding: 0 2vh;
+   margin: 1vh 0;
+   opacity: 0.5;
 }
 
 .score > :first-child{
-   
+   text-align: right;
+   border-right: .5vh solid var(--foreground-color);
 }
