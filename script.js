@@ -12,9 +12,13 @@ function update(time){
       const delta = time - lastTime;
       //Update Code
       // ball.update(delta);
+      computerPaddle.update(delta);
    }
    lastTime = time;
    window.requestAnimationFrame(update);
 }
 
+document.addEventListener("mousemove", e => {
+   playerPaddle.position = (e.y / window.innerHeight) * 100;
+})
 window.requestAnimationFrame(update)
