@@ -1,6 +1,9 @@
+const INITIAL_VELOCITY = 0.05;
+
 export default class Ball{
    constructor(ballElement){
       this.ballElem = ballElement;
+      this.reset();
    }
 
    get x(){
@@ -19,8 +22,25 @@ export default class Ball{
       this.ballElem.style.setProperty("--y", value);
    }
 
+   reset(){
+      this.x = 50;
+      this.y = 50;
+      this.direction = {x: 0};
+      while(Math.abs(this.direction.x) <= 0.2 || Math.abs(this.direction.x) >= 0.9){
+         const heading = this.randomNumberBetween(0, 2 * Math.PI);
+
+         this.direction = {x : Math.cos(heading), y: Math.sin(heading)};
+      }
+
+      this.velocity = INITIAL_VELOCITY;
+   }
+
+   randomNumberBetween(min, max){
+      return Math.random() * (max - min) + min;
+   }
+
    update(delta){
-      this.x = 5;
-      this.y = 15;
+      this.x += this.direction.x * this.velocity * delta;
+      this.y += this.direction.y * this.velocity * delta;
    }
 }
